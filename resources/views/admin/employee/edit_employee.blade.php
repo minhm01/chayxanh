@@ -10,10 +10,11 @@
                 <?php
                 $brch=Session::get('br');
                 $msg=Session::get('message');
+                $admin=Session::get('ad_id');
                 if($msg)	{
                     echo $msg;
                     Session::put('message',null);
-                }
+                }                
                 ?>
                 @foreach($edit_employee as $key => $edit)
                 <div class="position-center">
@@ -43,8 +44,7 @@
                             <input type="text" class="form-control" value="{{$edit->emp_pid}}" name="pid" placeholder="" required>
                         </div>                               
                     <button type="submit" name="add_branch" class="btn btn-info">Sửa</button>
-                    <?php
-                    $admin=Session::get('ad_user');
+                    <?php                    
                     if($admin){
                         if($edit->role=="employee"){ ?>
                         <a href="{{URL::to('/promote/'.$edit->emp_id)}}"class="btn btn-success">Thăng chức</a>

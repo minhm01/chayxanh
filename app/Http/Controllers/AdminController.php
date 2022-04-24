@@ -20,7 +20,13 @@ class AdminController extends Controller
         }
     }
     public function index(){
-        return view('admin_login');
+        $admin=Session::get('ad_id');
+        $manager=Session::get('manager');
+        if($admin||$manager){
+            return view('admin.dashboard');
+        }else{
+            return view('admin_login');
+        }        
     }
     public function show_dashboard(){
         $this->AuthLogin();
@@ -39,8 +45,8 @@ class AdminController extends Controller
         elseif($manager){
             $info=DB::table('tb1_employee')->where('emp_id',$user)->first();
             Session::put('manager',$info->emp_name);
-            Session::put('br',$info->br_id);     
-            return Redirect::to('/dashboard');       
+            Session::put('br',$info->br_id);
+            return Redirect::to('/dashboard');
         }
         else {
             Session::put('message','Đăng nhập thất bại');
@@ -50,7 +56,7 @@ class AdminController extends Controller
     public function logout(){
         $this->AuthLogin();
         Session::put('ad_user',null);
-        Session::put('ad_user',null);
+        Session::put('ad_id',null);
         Session::put('manager',null);
         Session::put('br',null);
         return Redirect::to('/quanly');

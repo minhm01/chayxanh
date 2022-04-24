@@ -7,7 +7,7 @@ Monthly 2.0.5 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		monthly: function(options) {
 			// These are overridden by options declared in footer
 			var defaults = {
-				weekStart: 'Sun',
+				weekStart: 'CN',
 				mode: '',
 				xmlUrl: '',
 				target: '',
@@ -27,8 +27,8 @@ Monthly 2.0.5 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				currentMonth = d.getMonth() + 1,
 				currentYear = d.getFullYear(),
 				currentDay = d.getDate(),
-				monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-				dayNames = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+				monthNames = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+				dayNames = ['CN','T2','T3','T4','T5','T6','T7'];
 
 		if (options.maxWidth != false){
 			$('#'+uniqueId).css('maxWidth',options.maxWidth);
@@ -56,10 +56,10 @@ Monthly 2.0.5 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 		}
 
 		// Add Day Of Week Titles
-		if (options.weekStart == 'Sun') {
-			$('#' + uniqueId).append('<div class="monthly-day-title-wrap"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div><div class="monthly-day-wrap"></div>');
-		} else if (options.weekStart == 'Mon') {
-			$('#' + uniqueId).append('<div class="monthly-day-title-wrap"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div><div class="monthly-day-wrap"></div>');
+		if (options.weekStart == 'CN') {
+			$('#' + uniqueId).append('<div class="monthly-day-title-wrap"><div>CN</div><div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div></div><div class="monthly-day-wrap"></div>');
+		} else if (options.weekStart == 'T2') {
+			$('#' + uniqueId).append('<div class="monthly-day-title-wrap"><div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div><div>CN</div></div><div class="monthly-day-wrap"></div>');
 		} else {
 			console.log('Incorrect entry for weekStart variable.')
 		}
@@ -125,7 +125,7 @@ Monthly 2.0.5 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			}
 
 			// Account for empty days at start
-			if(options.weekStart == 'Sun' && firstDay != 7) {
+			if(options.weekStart == 'CN' && firstDay != 7) {
 				for(var i = 0; i < firstDay; i++) {
 					$('#' + uniqueId + ' .monthly-day-wrap').prepend('<div class="m-d monthly-day-blank"><div class="monthly-day-number"></div></div>');
 				}

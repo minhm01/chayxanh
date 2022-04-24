@@ -43,6 +43,16 @@ Route::get('/promote/{emp_id}', 'Employee@promote');
 Route::get('/demote/{emp_id}', 'Employee@demote');
 
 //Work
-Route::get('edit-work/{emp_id}','Work@edit_work');
+Route::get('/add-work/{emp_id}','Work@add_work');
+Route::post('/save-work', 'Work@save_work');
+Route::get('/all-work', 'Work@all_work');
 
 //Attendance
+Route::get('/nhanvien', 'Attendance@index');
+Route::get('/nhan-vien', 'Attendance@show_dashboard');
+Route::post('/emp-dashboard', 'Attendance@dashboard');
+Route::get('/emp-logout', 'Attendance@logout');
+Route::get('/xemlich', 'Attendance@view_work');
+Route::get('/chamcong', 'Attendance@attend');
+Route::post('/checkin', 'Attendance@checkin');
+Route::get('/checkout', 'Attendance@checkout');

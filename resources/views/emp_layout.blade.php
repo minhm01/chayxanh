@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Trang quản lý</title>
+<title>Trang nhân viên</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -24,13 +24,13 @@
 <script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
 <script src="{{asset('public/backend/js/morris.js')}}"></script>
 </head>
-<body>
+<body onload="startTime()">
 <section id="container">
 <!--header start-->
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="{{URL::to('/dashboard')}}" class="logo">
+    <a href="{{URL::to('/nhanvien')}}" class="logo">
         CHAY XANH
     </a>
     <div class="sidebar-toggle-box">
@@ -50,14 +50,8 @@
                 <img alt="" src="{{asset('public/backend/images/2.png')}}">
                 <span class="username">
 					<?php
-					$admin=Session::get('ad_user');
-					$manager=Session::get('manager');
-					$br=Session::get('br');
-					if($admin){
-						echo $admin;
-					}else{						
-						echo $manager;
-					}					
+					$employee=Session::get('employee');
+					echo $employee;
 					?>
 				</span>
                 <b class="caret"></b>
@@ -65,11 +59,10 @@
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
+                <li><a href="{{URL::to('/emp-logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
-       
     </ul>
     <!--search & user info end-->
 </div>
@@ -82,39 +75,24 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="{{URL::to('/dashboard')}}">
+                    <a class="active" href="{{URL::to('/nhanvien')}}">
                         <i class="fa fa-dashboard"></i>
                         <span>Tổng quan</span>
                     </a>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
+                <li >
+                    <a href="{{URL::to('/xemlich')}}">
                         <i class="fa fa-book"></i>
-                        <span>Quản lý chi nhánh</span>
-                    </a>
-                    <ul class="sub">
-						<?php if($admin) { ?>
-						<li><a href="{{URL::to('/all-branch')}}">Danh sách chi nhánh</a></li>
-						<li><a href="{{URL::to('/add-branch')}}">Thêm chi nhánh</a></li>
-						<?php } ?>
-						<li><a href="{{URL::to('/all-work')}}">Lịch làm việc</a></li>
-                    </ul>
+                        <span>Lịch làm việc</span>
+                    </a>                    
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
+				<li >
+                    <a href="{{URL::to('/chamcong')}}">
                         <i class="fa fa-book"></i>
-                        <span>Quản lý nhân viên</span>
-                    </a>
-                    <ul class="sub">
-						<?php if($manager) { ?>
-						<li><a href="{{URL::to('/all-employee/'.$br)}}">Danh sách nhân viên</a></li>
-						<?php } else { ?>
-						<li><a href="{{URL::to('/all-employee/all')}}">Danh sách nhân viên</a></li>
-						<?php } ?>
-						<li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
-                    </ul>
+                        <span>Chấm công</span>
+                    </a>                    
                 </li>
-            </ul>            
+            </ul>
         </div>
         <!-- sidebar menu end-->
     </div>
@@ -123,7 +101,7 @@
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
-    @yield('admin_content')
+    @yield('emp_content')
 
     </section>
  <!-- footer -->
@@ -200,7 +178,7 @@
 	});
 	</script>
 <!-- calendar -->
-	<script type="text/javascript" src="js/monthly.js"></script>
+	<script type="text/javascript" src="{{asset('public/backend/js/monthly.js')}}"></script>
 	<script type="text/javascript">
 		$(window).load( function() {
 
@@ -231,5 +209,21 @@
 		});
 	</script>
 	<!-- //calendar -->
+	<script>
+		function startTime() {
+		  const today = new Date();
+		  let h = today.getHours();
+		  let m = today.getMinutes();
+		  let s = today.getSeconds();
+		  m = checkTime(m);
+		  s = checkTime(s);
+		  document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s;
+		  setTimeout(startTime, 1000);
+		}  
+		function checkTime(i) {
+		  if (i < 10) {i = "0" + i}; 
+		  return i;
+		}
+	  </script>
 </body>
 </html>

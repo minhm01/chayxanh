@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Trang quản lý</title>
+<title>Trang nhân viên</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -23,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h2>Quản lý</h2>
+	<h2>nhân viên</h2>
 	<?php
 	$msg=Session::get('message');
 	if($msg)	{
@@ -31,14 +31,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		Session::put('message',null);
 	}
 	?>
-		<form action="{{URL::to('/admin-dashboard')}}" method="post">
+		<form action="{{URL::to('/emp-dashboard')}}" method="post">
 			{{csrf_field() }}
-			<input type="text" class="ggg" name="ad_user" placeholder="Tên đăng nhập" required>
-			<input type="password" class="ggg" name="ad_pass" placeholder="Mật khẩu" required>
-			<a href="{{URL::to('nhan-vien')}}" class="text-primary">Chuyển đến trang nhân viên</a>
-			<div class="clearfix"></div>
-			<input type="submit" value="Đăng nhập" name="login">
-		</form>		
+			<input type="text" class="ggg" name="emp_id" placeholder="Mã nhân viên" required>
+			<a href="{{URL::to('quanly')}}" class="text-primary">Chuyển đến trang quản lý</a>
+			<input type="submit" value="Đăng nhập" name="login">			
+		</form>
 </div>
 </div>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>

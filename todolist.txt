@@ -1,0 +1,7 @@
+sửa màu nền
+đổi mật khẩu
+đổi all-employee/id sang check session
+chuyển message sang notify = javascript
+chuyển check điều kiện all-work sang gọi hàm check
+thêm nhân viên + xếp lịch
+filter nhân viên
