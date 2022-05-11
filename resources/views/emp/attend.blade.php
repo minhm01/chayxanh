@@ -23,7 +23,7 @@
     <h1 style="font-size:8vw;"><div id="clock"></div></h1>
     <div class="col-md-6">
       <form action="{{URL::to('/checkin')}}" method="post">
-        {{csrf_field() }}        
+        {{csrf_field() }}
         <input type="hidden" name="checkin" value={{$now}}>
         <input type="submit" value="Giờ vào" class="btn btn-success btn-lg btn-block">			
       </form>
@@ -50,7 +50,7 @@
             @foreach($shift as $sh)
             <tr>
               <td>{{$sh->shift_id}}</td>
-              @foreach($work as $wrk)              
+              @foreach($work as $wrk)
               <?php if($wrk->shift_id==$sh->shift_id) {?>
               <td title="{{$wrk->address}}">{{$wrk->br_id}}</td>
               <td>{{$wrk->vie}}</td>
@@ -62,10 +62,10 @@
               <td>-</td>
               <td>-</td>
               <td>-</td>
-              <td>-</td>              
+              <td>-</td>
               <?php } ?>
               @endforeach
-            </tr>            
+            </tr>
             @endforeach
           </tbody>
         </table>
@@ -84,7 +84,7 @@
     <div class="agile-calendar-grid">
       <div class="page">
         <div class="w3l-calendar-left">
-          <div class="calendar-heading">            
+          <div class="calendar-heading">
           </div>
           <div class="monthly" id="mycalendar"></div>
         </div>

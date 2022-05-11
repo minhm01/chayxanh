@@ -98,6 +98,11 @@
 						<li><a href="{{URL::to('/add-branch')}}">Thêm chi nhánh</a></li>
 						<?php } ?>
 						<li><a href="{{URL::to('/all-work')}}">Lịch làm việc</a></li>
+						<?php if($admin) { ?>
+						<li><a href="{{URL::to('/all-dispatch')}}">Điều phối nhân viên</a></li>
+						<?php }else{ ?>
+						<li><a href="{{URL::to('/request-dispatch')}}">Điều phối nhân viên</a></li>
+						<?php } ?>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -111,6 +116,16 @@
 						<?php } else { ?>
 						<li><a href="{{URL::to('/all-employee/all')}}">Danh sách nhân viên</a></li>
 						<?php } ?>
+						<li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
+                    </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý lương thưởng</span>
+                    </a>
+                    <ul class="sub">						
+						<li><a href="{{URL::to('/all-employee/all')}}">Danh sách nhân viên</a></li>						
 						<li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
                     </ul>
                 </li>
@@ -128,9 +143,6 @@
     </section>
  <!-- footer -->
 		  <div class="footer">
-			<div class="wthree-copyright">
-			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-			</div>
 		  </div>
   <!-- / footer -->
 </section>

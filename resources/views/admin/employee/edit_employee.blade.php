@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Cập nhật chi nhánh
+                Cập nhật nhân viên
             </header>
             <div class="panel-body">
                 <?php

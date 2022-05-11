@@ -40,13 +40,9 @@ class Work extends Controller
             }
             Session::put('message', 'Đã xếp lịch làm việc');
             $admin=Session::get('ad_id');
-            $manager=Session::get('br');        
-            if($admin){
-                return Redirect::to('all-employee/all');
-            }
-            else{
-                return Redirect::to('all-employee/'.$manager);
-            }
+            $manager=Session::get('br');
+            return Redirect::to('all-employee');
+
         }
         catch(QueryException $e) {
             Session::put('message', 'Trùng lịch');

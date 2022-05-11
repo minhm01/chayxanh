@@ -56,3 +56,10 @@ Route::get('/xemlich', 'Attendance@view_work');
 Route::get('/chamcong', 'Attendance@attend');
 Route::post('/checkin', 'Attendance@checkin');
 Route::get('/checkout', 'Attendance@checkout');
+
+//Dispatch
+Route::get('/request-dispatch', 'Dispatch@add_dispatch');
+Route::post('/save-dispatch', 'Dispatch@save_dispatch');
+Route::get('/all-dispatch', 'Dispatch@all_dispatch');
+Route::get('/send-dispatch/{dp_id}', 'Dispatch@edit_dispatch');
+Route::post('/upd-dispatch', 'Dispatch@upd_dispatch');
