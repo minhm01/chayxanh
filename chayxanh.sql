@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2022 lúc 11:12 AM
+-- Thời gian đã tạo: Th5 15, 2022 lúc 11:33 AM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 7.4.16
 
@@ -66,7 +66,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2022_04_12_100240_tb1_weekday', 6),
 (11, '2022_04_15_202643_tb1_work_position', 7),
 (12, '2022_04_21_151956_tb1_attendance_result', 8),
-(13, '2022_05_07_205158_tb1_dispatched_employee', 9);
+(13, '2022_05_07_205158_tb1_dispatched_employee', 9),
+(14, '2022_05_12_190305_create_notifications_table', 10);
 
 -- --------------------------------------------------------
 
@@ -143,9 +144,12 @@ CREATE TABLE `tb1_attendance` (
 
 INSERT INTO `tb1_attendance` (`emp_id`, `br_id`, `date`, `shift_id`, `checkin`, `checkout`, `duration`, `result`) VALUES
 (2, 1, '2022-04-21', 2, '17:09:00', '22:47:00', 5, 'full'),
+(2, 1, '2022-05-11', 2, '16:45:00', NULL, NULL, 'on time'),
+(3, 1, '2022-05-19', 2, NULL, NULL, NULL, 'overtime'),
 (3, 3, '2022-04-21', 2, '17:08:00', '22:48:00', 4.87, 'late'),
 (5, 1, '2022-05-07', 2, NULL, NULL, NULL, 'overtime'),
 (5, 1, '2022-05-17', 2, NULL, NULL, NULL, 'overtime'),
+(5, 1, '2022-05-19', 2, NULL, NULL, NULL, 'overtime'),
 (7, 1, '2022-05-07', 2, NULL, NULL, NULL, 'overtime');
 
 -- --------------------------------------------------------
@@ -156,19 +160,21 @@ INSERT INTO `tb1_attendance` (`emp_id`, `br_id`, `date`, `shift_id`, `checkin`, 
 
 CREATE TABLE `tb1_attendance_result` (
   `eng` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vie` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `vie` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `button` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tb1_attendance_result`
 --
 
-INSERT INTO `tb1_attendance_result` (`eng`, `vie`) VALUES
-('early leave', 'Về sớm'),
-('full', 'Đủ giờ'),
-('late', 'Đi trễ'),
-('on time', 'Đến đúng giờ'),
-('overtime', 'Tăng ca');
+INSERT INTO `tb1_attendance_result` (`eng`, `vie`, `button`) VALUES
+('absent', 'Vắng', 'info'),
+('early leave', 'Về sớm', 'secondary'),
+('full', 'Đủ giờ', 'success'),
+('late', 'Đi trễ', 'warning'),
+('on time', 'Đúng giờ', 'primary'),
+('overtime', 'Tăng ca', 'danger');
 
 -- --------------------------------------------------------
 
@@ -208,7 +214,9 @@ CREATE TABLE `tb1_dispatched_employee` (
 INSERT INTO `tb1_dispatched_employee` (`dp_id`, `emp_id`) VALUES
 (1, 5),
 (1, 7),
-(2, 5);
+(2, 5),
+(3, 3),
+(3, 5);
 
 -- --------------------------------------------------------
 
@@ -235,7 +243,8 @@ CREATE TABLE `tb1_dispatcher` (
 
 INSERT INTO `tb1_dispatcher` (`dp_id`, `br_id`, `date`, `shift_id`, `position`, `emp`, `note`, `result`, `created_at`, `updated_at`) VALUES
 (1, 1, '2022-05-07', 2, 'chef cook', 2, 'DDD', 'solved', '2022-05-07 09:15:10', '2022-05-09 21:47:27'),
-(2, 1, '2022-05-17', 2, 'chef', 1, NULL, 'solved', '2022-05-07 11:32:48', '2022-05-09 21:47:19');
+(2, 1, '2022-05-17', 2, 'chef', 1, NULL, 'solved', '2022-05-07 11:32:48', '2022-05-09 21:47:19'),
+(3, 1, '2022-05-19', 2, 'chef cook', 2, NULL, 'solved', '2022-05-11 09:48:13', '2022-05-11 09:48:33');
 
 -- --------------------------------------------------------
 
@@ -533,7 +542,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -557,7 +566,7 @@ ALTER TABLE `tb1_branch`
 -- AUTO_INCREMENT cho bảng `tb1_dispatcher`
 --
 ALTER TABLE `tb1_dispatcher`
-  MODIFY `dp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `dp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `tb1_employee`

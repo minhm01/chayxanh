@@ -44,6 +44,7 @@ class AdminController extends Controller
         }
         elseif($manager){
             $info=DB::table('tb1_employee')->where('emp_id',$user)->first();
+            Session::put('mng_id',$user);
             Session::put('manager',$info->emp_name);
             Session::put('br',$info->br_id);
             return Redirect::to('/dashboard');
@@ -60,6 +61,42 @@ class AdminController extends Controller
         Session::put('manager',null);
         Session::put('br',null);
         return Redirect::to('/quanly');
+    }
+    public function change_pw(){
+        $this->AuthLogin();
+        return view('admin.change_pw');
+    }
+    public function save_pw(Request $request){
+        $this->AuthLogin();
+        $admin=Session::get('ad_id');
+        $manager=Session::get('mng_id');
+        $old=md5($request->old);
+        if($admin){
+            $check=DB::table('tb1_admin')->where('admin_id',$admin)->pluck('password')->first();
+            if($old==$check) {
+                $new=md5($request->new);
+                DB::table('tb1_admin')->where('admin_id',$admin)->update(['password' => $new]);
+                Session::put('message','Đã đổi mật khẩu');
+                return view('admin.change_pw');
+            }
+            else{
+                Session::put('message','Sai mật khẩu');
+                return view('admin.change_pw');
+            }
+        }
+        else{
+            $check=DB::table('tb1_manager_account')->where('emp_id',$manager)->pluck('password')->first();
+            if($old==$check) {
+                $new=md5($request->new);
+                DB::table('tb1_manager_account')->where('emp_id',$manager)->update(['password' => $new]);
+                Session::put('message','Đã đổi mật khẩu');
+                return view('admin.change_pw');
+            }
+            else{
+                Session::put('message','Sai mật khẩu');
+                return view('admin.change_pw');
+            }
+        }
     }
 }
 

@@ -35,7 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			{{csrf_field() }}
 			<input type="text" class="ggg" name="emp_id" placeholder="Mã nhân viên" required>
 			<a href="{{URL::to('quanly')}}" class="text-primary">Chuyển đến trang quản lý</a>
-			<input type="submit" value="Đăng nhập" name="login">			
+			<input type="submit" value="Đăng nhập" name="login">
 		</form>
 </div>
 </div>

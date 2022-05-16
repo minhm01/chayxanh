@@ -25,7 +25,8 @@ class Dispatch extends Controller
         $br_id=Session::get('br');
         $br=DB::table('tb1_branch')->where('br_id',$br_id)->first();
         $shift=DB::table('tb1_shift')->get();
-        return view('admin.dispatch.add_dispatch')->with('br',$br)->with('shift',$shift);
+        $dp=DB::table('tb1_dispatcher')->where('br_id',$br_id)->get();
+        return view('admin.dispatch.add_dispatch')->with('br',$br)->with('shift',$shift)->with('dispatch',$dp);
     }
     public function save_dispatch(Request $request){
         $this->AuthLogin();
@@ -82,7 +83,7 @@ class Dispatch extends Controller
             $num++;
         }
         DB::table('tb1_dispatcher')->where('dp_id',$request->dp)->update(['result' => 'solved','emp' => $num]);
-        Session::put('message', 'Đã gửi yêu cầu');
+        Session::put('message', 'Đã điều phối nhân viên');
         return Redirect::to('/all-dispatch');
     }
 }

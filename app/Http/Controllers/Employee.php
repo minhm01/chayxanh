@@ -25,14 +25,9 @@ class Employee extends Controller
         $br=DB::table('tb1_branch')->orderby('br_id','desc')->get();
         return view('admin.employee.add_employee')->with('br_id',$br);
     }
-    public function all_emp($br){
+    public function all_emp(){
         $this->AuthLogin();
-        if($br!='all'){
-            $all_employee=DB::table('tb1_employee')->join('tb1_branch','tb1_employee.br_id','=','tb1_branch.br_id')->where('tb1_employee.br_id',$br)->get();
-        }
-        else{
-            $all_employee=DB::table('tb1_employee')->join('tb1_branch','tb1_employee.br_id','=','tb1_branch.br_id')->get();
-        }        
+        $all_employee=DB::table('tb1_employee')->join('tb1_branch','tb1_employee.br_id','=','tb1_branch.br_id')->get();
         $employee=view('admin.employee.all_employee')->with('all_employee',$all_employee);
         return view('admin_layout')->with('admin.employee.all_employee',$employee);
     }

@@ -11,6 +11,8 @@
         echo $msg;
         Session::put('message',null);
     }
+    $admin=Session::get('ad_id');
+    $manager=Session::get('br');
     ?>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
@@ -33,7 +35,8 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($all_employee as $key => $emp)              
+        @foreach($all_employee as $key => $emp)
+        <?php if($admin||$emp->br_id==$manager) { ?>
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$emp->emp_id}}</td>
@@ -59,13 +62,11 @@
                 <a onclick="return confirm('Xác nhận xóa nhân viên?')" href="{{URL::to('/del-employee/'.$emp->emp_id)}}" class="btn btn-danger">Xóa</a>
             </td>
           </tr>
+          <?php } ?>
         @endforeach
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
-      
-    </footer>
   </div>
 </div>
 @endsection

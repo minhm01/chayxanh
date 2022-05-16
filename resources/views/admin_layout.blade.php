@@ -63,8 +63,7 @@
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                <li><a href="{{URL::to('/change-password')}}"><i class="fa fa-cog"></i> Đổi mật khẩu</a></li>
                 <li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
             </ul>
         </li>
@@ -110,23 +109,18 @@
                         <i class="fa fa-book"></i>
                         <span>Quản lý nhân viên</span>
                     </a>
-                    <ul class="sub">
-						<?php if($manager) { ?>
-						<li><a href="{{URL::to('/all-employee/'.$br)}}">Danh sách nhân viên</a></li>
-						<?php } else { ?>
-						<li><a href="{{URL::to('/all-employee/all')}}">Danh sách nhân viên</a></li>
-						<?php } ?>
+                    <ul class="sub">						
+						<li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>						
 						<li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Quản lý lương thưởng</span>
+                        <span>Quản lý chấm công</span>
                     </a>
                     <ul class="sub">						
-						<li><a href="{{URL::to('/all-employee/all')}}">Danh sách nhân viên</a></li>						
-						<li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
+						<li><a href="{{URL::to('/all-attend')}}">Chấm công</a></li>						
                     </ul>
                 </li>
             </ul>            
@@ -141,10 +135,7 @@
     @yield('admin_content')
 
     </section>
- <!-- footer -->
-		  <div class="footer">
-		  </div>
-  <!-- / footer -->
+
 </section>
 <!--main content end-->
 </section>

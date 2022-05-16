@@ -52,9 +52,6 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
-      
-    </footer>
   </div>
 </div>
 @endsection

@@ -10,6 +10,16 @@ use Session;
 session_start();
 class Attendance extends Controller
 {
+    public function AuthLogin(){
+        $admin=Session::get('ad_id');
+        $manager=Session::get('manager');
+        if($admin||$manager){
+            return Redirect::to('dashboard');
+        }
+        else{
+            Redirect::to('quanly')->send();
+        }
+    }
     public function AuthEmp(){
         $emp=Session::get('employee');
         if($emp){
@@ -107,11 +117,11 @@ class Attendance extends Controller
                 $data['result']='late';
             }
             try{
-                DB::table('tb1_attendance')->insert($data);
+                DB::table('tb1_attendance')->insertOrCreate($data);
                 Session::put('message', 'Đã checkin');
             }
-             catch(QueryException $e) {
-                 Session::put('message', 'Đã checkin trước');
+             catch(QueryException $e) {                
+                Session::put('message', 'Đã checkin trước');
             }
         }else{
             Session::put('message','Chưa đến giờ làm việc');
@@ -163,5 +173,11 @@ class Attendance extends Controller
             }
         }
         DB::table('tb1_attendance')->where('emp_id',$emp)->where('br_id',$br)->where('date',$date)->where('shift_id',$shift)->limit(1)->update($data);
+    }
+    public function all_attend(){
+        $this->AuthLogin();
+        $att=DB::table('tb1_attendance')->join('tb1_attendance_result','tb1_attendance_result.eng','=','tb1_attendance.result')->get();
+        $result=DB::table('tb1_attendance_result')->get();
+        return view('admin.all_attend')->with('attend',$att)->with('result',$result);
     }
 }

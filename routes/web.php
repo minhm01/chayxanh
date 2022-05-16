@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Attendance;
+use App\Http\Controllers\branch;
+use App\Http\Controllers\Dispatch;
+use App\Http\Controllers\Employee;
+use App\Http\Controllers\Manager;
+use App\Http\Controllers\Work;
 
 
 /*
@@ -17,12 +24,13 @@ use App\Http\Controllers\HomeController;
 //Frontend
 Route::get('/', 'HomeController@index');
 
-
 //Backend
 Route::get('/quanly', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@show_dashboard');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
 Route::get('/logout', 'AdminController@logout');
+Route::get('/change-password', 'AdminController@change_pw');
+Route::post('/save-password', 'AdminController@save_pw');
 
 //Branch
 Route::get('/add-branch', 'Branch@add_branch');
@@ -34,7 +42,7 @@ Route::get('/del-branch/{br_id}', 'Branch@del_branch');
 
 //Employee
 Route::get('/add-employee', 'Employee@add_emp');
-Route::get('/all-employee/{br}', 'Employee@all_emp');
+Route::get('/all-employee', 'Employee@all_emp');
 Route::post('/save-employee', 'Employee@save_emp');
 Route::get('/edit-employee/{emp_id}', 'Employee@edit_emp');
 Route::post('/upd-employee/{emp_id}', 'Employee@upd_emp');
@@ -56,6 +64,7 @@ Route::get('/xemlich', 'Attendance@view_work');
 Route::get('/chamcong', 'Attendance@attend');
 Route::post('/checkin', 'Attendance@checkin');
 Route::get('/checkout', 'Attendance@checkout');
+Route::get('/all-attend', 'Attendance@all_attend');
 
 //Dispatch
 Route::get('/request-dispatch', 'Dispatch@add_dispatch');

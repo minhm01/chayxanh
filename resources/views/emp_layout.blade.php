@@ -57,8 +57,6 @@
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                 <li><a href="{{URL::to('/emp-logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
             </ul>
         </li>
@@ -104,13 +102,6 @@
     @yield('emp_content')
 
     </section>
- <!-- footer -->
-		  <div class="footer">
-			<div class="wthree-copyright">
-			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-			</div>
-		  </div>
-  <!-- / footer -->
 </section>
 <!--main content end-->
 </section>

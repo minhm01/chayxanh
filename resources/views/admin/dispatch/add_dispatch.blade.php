@@ -50,4 +50,40 @@ $dat = new DateTime(); $date=$dat->format( 'Y-m-d' );?>
             </div>
         </section>
     </div>
+</div>
+<div class="table-agile-info">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        yêu cầu đã xử lý
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+          <thead>
+            <tr>
+              <th>Ngày</th>
+              <th>Ca</th>
+              <th>Số nhân viên</th>
+              <th>Ghi chú</th>
+              <th>Ngày gửi</th>
+              <th>Ngày xử lý</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($dispatch as $dp)
+          <?php if($dp->result) {?>
+          <tr>
+            <td>{{$dp->date}}</td>
+            <td>{{$dp->shift_id}}</td>
+            <td>{{$dp->emp}}</td>
+            <td>{{$dp->note}}</td>
+            <td>{{date_format(new Datetime($dp->created_at),'Y-m-d')}}</td>
+            <td>{{date_format(new Datetime($dp->updated_at),'Y-m-d')}}</td>
+          </tr>
+          <?php } ?>
+          @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 @endsection
