@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Attendance;
-use App\Http\Controllers\branch;
+use App\Http\Controllers\Branch;
 use App\Http\Controllers\Dispatch;
 use App\Http\Controllers\Employee;
 use App\Http\Controllers\Manager;
